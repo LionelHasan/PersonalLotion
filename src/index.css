@@ -1,16 +1,212 @@
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-p {
-  margin: 0;
-  padding: 0;
+body {
+  color: #444;
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+  margin:0
 }
+
 a {
-  color: inherit;
-  text-decoration: none;
+  text-decoration:none
 }
+
+nav {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #ddd;
+
+  height: 10%;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding:0;
+}
+
+
+
+
+nav p {
+  margin: 0;
+}
+
+nav li {
+  flex: 0 1 auto;
+  text-align:center;
+  margin: 0;
+}
+
+
+nav li a {
+  display: block;
+  font-size: 1em;
+  padding: 16px 32px;
+  text-decoration:none
+}
+
+.entirepage {
+  height:100vh;
+  overflow: visible;
+}
+html, body {
+  height: 100vh;
+}
+#menu {
+  margin-right: auto;
+  font-size: 40px;
+}
+
+.lotion {
+  padding: 0px;
+  font-size: 40px;
+  margin: 5px;
+}
+
+.subtitle {
+  padding:0px;
+  margin:5px;
+  color: gray;
+}
+
+#title {
+  margin-right: auto;
+}
+
+
+#container {
+  display: flex;
+  justify-content: center;
+  height:89vh;
+
+}
+
+#sidebar {
+  flex:3;
+  border: 1px solid #eee;
+  height: 89vh
+  
+
+}
+
+#sidebarheader {
+  border-bottom: 1px solid #eee;
+  padding-left: 15px;
+  display: flex;
+}
+
+#sidebartitle{
+  margin-right: 30vh;
+}
+
+
+.ql-toolbar.ql-snow{
+  flex:1;
+}
+.ql-container.ql-snow{
+  flex:11;
+  height:94%;
+
+}
+.ql-container.ql-snow {
+  border: 1px solid #ccc !important;
+  }
+
+
+#NoteTitle{
+  flex:2;
+}
+
+#NoteTitle > ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding:0;
+  height:100%;
+
+}
+
+#NoteTitle > ul > li {
+  padding:10px;
+  text-align: center;
+}
+
+#edit {
+  padding-top:8px;
+}
+
+#delete {
+  padding-top:8px;
+}
+
+#datepicker {
+  border: none;
+  flex:1;
+}
+#firstchild {
+  margin-right:auto;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+#textbox {
+  width: 90%;
+  flex:2;
+  border: none;
+  font-size: 30px;
+}
+*:focus {
+  outline: none;
+}
+
+
+#quill {
+  flex:8;
+  display: flex;
+}
+
+#sidebarheader > ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding:0;
+  list-style-type: none;
+
+}
+
+#sidebarheader {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+
+
+.quill {
+  height:100%
+}
+
+
+
+
+#content {
+  flex: 9;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+}
+
+.NoteTitle {
+  height:20%;
+}
+.hidden {
+  visibility: hidden;
+  position: absolute;
+}
+
+
+
+
+
+
+
