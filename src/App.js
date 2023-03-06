@@ -12,9 +12,9 @@ return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/note" element={<NoteTitle />} />
+          <Route path="/edit" element={<NoteTitle />} />
           <Route path="/" element={<NoteTitle />} />
-          <Route path="/saved" element={<SavedNote />} />
+          <Route path="/note" element={<SavedNote />} />
 
 
         </Route>

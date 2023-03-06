@@ -1,3 +1,5 @@
+
+
 body {
   color: #444;
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -77,7 +79,6 @@ html, body {
   display: flex;
   justify-content: center;
   height:89vh;
-
 }
 
 #sidebar {
@@ -87,7 +88,16 @@ html, body {
   
 
 }
-
+#save {
+  padding-top: 28px;
+}
+#savednotetitle{
+  justify-self: left;
+}
+#savedText {
+  padding: 15px;
+  width:125%;
+}
 #sidebarheader {
   border-bottom: 1px solid #eee;
   padding-left: 15px;
@@ -114,28 +124,68 @@ html, body {
 
 #NoteTitle{
   flex:2;
+  padding-left:75px;
 }
 
 #NoteTitle > ul {
   display: flex;
   list-style: none;
-  margin: 0;
-  padding:0;
-  height:100%;
-
+  padding-left: auto;
+  height:95%;
 }
 
 #NoteTitle > ul > li {
-  padding:10px;
-  text-align: center;
+  padding:5px;
+  display: flex;
 }
 
+#NoteTitle2{
+  flex:2;
+}
+
+#NoteTitle2 > ul {
+  display: flex;
+  list-style: none;
+  height:95%;
+  padding-inline-start: none !important;
+  padding:5px;
+}
+
+#NoteTitle2> ul > li {
+  display: flex;
+}
+
+
+#savedText{
+  border: 1px solid #eee;
+  height:100%;
+  align-items: center;
+
+}
+
+#datepreview {
+  font-size: 0.7em;
+  color: gray;
+  margin: 0px;
+}
+
+.notepreviewtitle {
+  padding: 0px;
+  margin: 0px;
+}
+#NotePreview {
+  border: 1px solid #eee;
+  min-height:10%;
+  padding: 10px;
+
+}
 #edit {
-  padding-top:8px;
+  padding-top:28px;
+  align-items: center;
 }
 
 #delete {
-  padding-top:8px;
+  padding-top:28px;
 }
 
 #datepicker {
@@ -186,6 +236,11 @@ html, body {
   height:100%
 }
 
+.quilljs{
+  flex:11;
+  width:128%;
+}
+
 
 
 
@@ -194,6 +249,7 @@ html, body {
   padding:0;
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 
 .NoteTitle {

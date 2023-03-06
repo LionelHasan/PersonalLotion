@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Quill from "quill";
-import NoteTitle from "./NoteTitle";
 import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 
 
@@ -24,9 +23,6 @@ function QuillEditor(props) {
         var delta = quill.getContents();
         const converter = new QuillDeltaToHtmlConverter(delta.ops, {});
         const html = converter.convert();
-
-        console.log(html);
-        const editorContent = quill.getText();
         setData(html);
       });
     }

@@ -1,18 +1,32 @@
 import React from 'react';
 import { Markup } from 'interweave';
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, NavLink } from "react-router-dom";
+import NotePreview from './NotePreview';
 
 
 
 
 function SavedNote(props) {
-  const myString = JSON.stringify(props);
-  const shortenedString = myString.substring(11, myString.length - 2);
-  console.log(shortenedString);
-  //const [someParameter, someFunction] = useOutletContext();
+  const name = localStorage.getItem('textbox');
+  const title = localStorage.getItem('title');
+  const date = localStorage.getItem('date');
+  console.log(name);
+  console.log(date);
+
   return (
-    
-  <Markup content={shortenedString} /> // 
+    <>
+      <div id="NoteTitle2">
+        <ul>
+          <li id="firstchild">
+          <h2 class ="savednotetitle"> {title}</h2>
+          <p> {date}</p>
+          </li>
+        </ul>
+      </div>
+      <div id = "savedText">
+      <Markup content={name} />
+      </div>
+    </>
   );
 }
 
