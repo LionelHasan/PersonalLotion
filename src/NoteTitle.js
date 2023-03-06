@@ -11,15 +11,11 @@ import { render } from "@testing-library/react";
 function NoteTitle() {
 
   const prop = useOutletContext();
-  
-
-
-
-
-
-  const [dataFromChild, setDataFromChild] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const [inputValue2, setInputValue2] = useState('');
+  const count = prop.count;
+  console.log("Note Title Count:" + count);
+  const [dataFromChild, setDataFromChild] = useState('No Text Entered');
+  const [inputValue, setInputValue] = useState('Untitled');
+  const [inputValue2, setInputValue2] = useState("March 29, 2023 at 8:17 PM");
   const options = {
     year: "numeric",
     month: "long",
@@ -28,14 +24,6 @@ function NoteTitle() {
     minute: "numeric",
   };
 
-  useEffect(() => {
-    localStorage.setItem('title', inputValue);
-    const date = formatDate(inputValue2);
-    localStorage.setItem('date', date);
-    localStorage.setItem('textbox', dataFromChild);
-    console.log(localStorage.getItem('textbox'));
-
-  }, [prop]);
 
 
 
@@ -53,20 +41,29 @@ function NoteTitle() {
     input.select();
   }, [])
 
+  useEffect(() => {
+    const date = formatDate(inputValue2);
+    localStorage.setItem('date' + count, date);
+  }, [inputValue2]);
+
+  useEffect(() => {
+    localStorage.setItem('title' + count, inputValue);
+  }, [inputValue]);
+
+  useEffect(() => {
+    localStorage.setItem('textbox' + count, dataFromChild);
+  }, [dataFromChild]);
+
 
   function handleInputChange(event) {
     setInputValue(event.target.value);
-    localStorage.setItem('title', inputValue);
   }
   function handleInputChange2(event) {
     setInputValue2(event.target.value);
-    const date = formatDate(inputValue2);
-    localStorage.setItem('date', date);
   }
 
   function handleDataFromChild(data) {
     setDataFromChild(data);
-    localStorage.setItem('textbox', dataFromChild);
   }
 
 
@@ -78,7 +75,7 @@ function NoteTitle() {
         <ul>
           <li id="firstchild">
             <input id="textbox" type="text" defaultValue="Untitled" value={inputValue} onChange={handleInputChange} />
-            <input id="datepicker" type="datetime-local" defaultValue = "March 29, 2023 at 8:17 PM" value={inputValue2} onChange={handleInputChange2} />
+            <input id="datepicker" type="datetime-local" defaultValue value={inputValue2} onChange={handleInputChange2} />
           </li>
         </ul>
       </div>

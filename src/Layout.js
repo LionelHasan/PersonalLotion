@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -7,38 +7,55 @@ import NotePreview from "./NotePreview";
 
 
 function Layout() {
+  const navigate = useNavigate();
+  const [count, setCount] = useState(0);
 
-  
+
   const [isClicked, setIsClicked] = useState(false);
-  const [button, setButton] = useState(<NavLink to="/note" id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>);
-
+  
 
 
 
   const button1Click = (updateButton) => {
-    updateButton(<NavLink to="/edit" id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>);
+    const route = "/edit/" + count + 1;
+    console.log(route);
+    updateButton(<NavLink to={route} id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>);
   };
 
   const button2Click = (updateButton) => {
-    updateButton(<NavLink to="/note" id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>);
+    const route = "/note/" + count + 1;
+    console.log(route);
+    updateButton(<NavLink to= {route} id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>);
   };
 
 
-  const updateButton = (button) => {
-    setIsClicked(!isClicked);
-    setButton(button);
+  const updateButton = () => {
+    setIsClicked(previsClicked => !previsClicked);
   };
 
   function handleMenuClick() {
     const sidebar = document.getElementById("sidebar");
-
     sidebar.classList.toggle("hidden");
 
+  }
+
+  function handleAddClick() {
+    setCount(prevCount => prevCount +1);
+    navigate('/edit/'+(count+1));
+    updateButton();
   }
 
 
 
   const sidebarRef = useRef(null);
+  const childComponents = Array.from({ length: count }, (_, index) => (
+    <NotePreview key={index} button ={isClicked} count ={index} />
+  ));
+
+  const props = { isClicked, count};
+
+
+
 
 
 
@@ -65,25 +82,21 @@ function Layout() {
             <div id="sidebarheader">
               <ul>
                 <li><h2 id="sidebartitle">Notes</h2></li>
-                <li ><h2 id="newnote">+</h2></li>
+                <li onClick = {handleAddClick}><h2 id="newnote">+</h2></li>
               </ul>
             </div>
-            <NotePreview button={isClicked} />
+            <NotePreview button={isClicked} count = {count}/>
+            {childComponents}
           </div>
-
-
-
-
           <div id="content">
-
-            <Outlet context= {isClicked} />
+            <Outlet context= {props} />
           </div>
           <div id="NoteTitle">
             <ul>
               <li>              {isClicked ? (
-                <NavLink to="/edit" id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>
+                <NavLink to={"/edit/" + (count + 1)} id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>
               ) : (
-                <NavLink to="/note" id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>
+                <NavLink to={"/note/" + (count + 1)} id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>
               )}
               </li>
               <li><NavLink id="delete"> Delete</NavLink></li>

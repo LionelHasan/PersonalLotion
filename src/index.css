@@ -84,7 +84,7 @@ html, body {
 #sidebar {
   flex:3;
   border: 1px solid #eee;
-  height: 89vh
+  max-height: 89vh;
   
 
 }

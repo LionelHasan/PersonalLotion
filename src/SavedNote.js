@@ -2,16 +2,24 @@ import React from 'react';
 import { Markup } from 'interweave';
 import { useOutletContext, NavLink } from "react-router-dom";
 import NotePreview from './NotePreview';
+import { htmlToText } from "html-to-text";
+import { useParams } from "react-router-dom";
 
 
 
 
-function SavedNote(props) {
-  const name = localStorage.getItem('textbox');
-  const title = localStorage.getItem('title');
-  const date = localStorage.getItem('date');
-  console.log(name);
-  console.log(date);
+
+function SavedNote() {
+  let { id } = useParams();
+  const prop = useOutletContext();
+  const count = prop.count;
+  id = prop.count +1;
+  console.log("Save Title Count:" + count);
+  const name = localStorage.getItem('textbox'+count);
+  const plainText = htmlToText(name);
+  localStorage.setItem('plaintext'+count, plainText);
+  const title = localStorage.getItem('title'+count);
+  const date = localStorage.getItem('date'+count);
 
   return (
     <>

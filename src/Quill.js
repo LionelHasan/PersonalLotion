@@ -17,6 +17,7 @@ function QuillEditor(props) {
     if (editorRef.current) {
       const quill = new Quill(editorRef.current, {
         theme: "snow",
+        placeholder: "Please Enter Text",
       });
 
       quill.on("text-change", () => {
