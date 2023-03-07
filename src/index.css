@@ -173,7 +173,7 @@ html, body {
   padding: 0px;
   margin: 0px;
 }
-#NotePreview {
+.NotePreview {
   border: 1px solid #eee;
   min-height:10%;
   padding: 10px;

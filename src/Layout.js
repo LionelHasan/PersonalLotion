@@ -39,9 +39,34 @@ function Layout() {
 
   }
 
+  function deleteButton(count) {
+    const answer = window.confirm("Are you sure?");
+  if (answer) {
+    deleteNote(count)
+}
+  }
+
+
+  function deleteNote(count) {
+    console.log("Note" + count + "was deleted")
+    if(localStorage.getItem("textbox"+count)) {
+      localStorage.removeItem("textbox"+count);
+      localStorage.removeItem("date"+count);
+      localStorage.removeItem("title"+count);
+      localStorage.removeItem("plaintext"+count);
+
+    }
+    
+    setCount(prevCount => prevCount -1);
+  }
+
   function handleAddClick() {
     setCount(prevCount => prevCount +1);
     navigate('/edit/'+(count+1));
+    updateButton();
+  }
+
+  function handleSideBarClick(){
     updateButton();
   }
 
@@ -85,8 +110,10 @@ function Layout() {
                 <li onClick = {handleAddClick}><h2 id="newnote">+</h2></li>
               </ul>
             </div>
+            <div onClick = {handleSideBarClick}>
             <NotePreview button={isClicked} count = {count}/>
             {childComponents}
+            </div>
           </div>
           <div id="content">
             <Outlet context= {props} />
@@ -99,7 +126,7 @@ function Layout() {
                 <NavLink to={"/note/" + (count + 1)} id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>
               )}
               </li>
-              <li><NavLink id="delete"> Delete</NavLink></li>
+              <li><NavLink id="delete" onClick = {() => deleteButton(count)}> Delete</NavLink></li>
               <div>
 
               </div>
