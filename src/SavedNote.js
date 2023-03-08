@@ -10,10 +10,10 @@ import { useParams } from "react-router-dom";
 
 
 function SavedNote() {
-  let { id } = useParams();
+  const { id } = useParams();
   const prop = useOutletContext();
-  const count = prop.count;
-  id = prop.count +1;
+  const count = id;
+
   console.log("Save Title Count:" + count);
   const name = localStorage.getItem('textbox'+count);
   const plainText = htmlToText(name);

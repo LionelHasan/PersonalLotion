@@ -5,14 +5,17 @@ import QuillEditor from "./Quill";
 import { useOutletContext } from "react-router-dom";
 import MyComponent from "./SavedNote";
 import { render } from "@testing-library/react";
+import { useParams } from "react-router-dom";
+
 
 
 
 function NoteTitle() {
 
   const prop = useOutletContext();
-  const count = prop.count;
-  console.log("Note Title Count:" + count);
+  const { id } = useParams();
+  console.log(id);
+  const count = id;
   const [dataFromChild, setDataFromChild] = useState('No Text Entered');
   const [inputValue, setInputValue] = useState('Untitled');
   const [inputValue2, setInputValue2] = useState("March 29, 2023 at 8:17 PM");
@@ -23,6 +26,8 @@ function NoteTitle() {
     hour: "numeric",
     minute: "numeric",
   };
+
+
 
 
 

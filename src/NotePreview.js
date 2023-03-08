@@ -5,7 +5,6 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 function NotePreview(prop) {
   const navigate = useNavigate();
   const count = prop.count;
-  console.log("Note Preview Count:" + count);
   const [name, setName] = useState(localStorage.getItem('textbox'+count));
   const [title, setTitle] = useState(localStorage.getItem('title'+count));
   const [date, setDate] = useState(localStorage.getItem('date'+count));
@@ -19,7 +18,7 @@ function NotePreview(prop) {
   }, [prop.button]);
 
   function handlePreviewClick() {
-    navigate('/edit/'+(count+1));
+    navigate('/edit/'+(count));
     console.log("Clicked");
   }
 

@@ -1,5 +1,7 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from 'react';
+import { htmlToText } from "html-to-text";
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import NoteTitle from "./NoteTitle";
@@ -17,13 +19,13 @@ function Layout() {
 
 
   const button1Click = (updateButton) => {
-    const route = "/edit/" + count + 1;
+    const route = "/edit/" + count;
     console.log(route);
     updateButton(<NavLink to={route} id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>);
   };
 
   const button2Click = (updateButton) => {
-    const route = "/note/" + count + 1;
+    const route = "/note/" + count;
     console.log(route);
     updateButton(<NavLink to= {route} id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>);
   };
@@ -63,11 +65,11 @@ function Layout() {
   function handleAddClick() {
     setCount(prevCount => prevCount +1);
     navigate('/edit/'+(count+1));
-    updateButton();
+    updateButton()
   }
 
   function handleSideBarClick(){
-    updateButton();
+    
   }
 
 
@@ -79,8 +81,7 @@ function Layout() {
 
   const props = { isClicked, count};
 
-
-
+  
 
 
 
@@ -110,8 +111,7 @@ function Layout() {
                 <li onClick = {handleAddClick}><h2 id="newnote">+</h2></li>
               </ul>
             </div>
-            <div onClick = {handleSideBarClick}>
-            <NotePreview button={isClicked} count = {count}/>
+            <div id ="sidebarClick" onClick = {handleSideBarClick}>
             {childComponents}
             </div>
           </div>
@@ -121,9 +121,9 @@ function Layout() {
           <div id="NoteTitle">
             <ul>
               <li>              {isClicked ? (
-                <NavLink to={"/edit/" + (count + 1)} id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>
+                <NavLink to={"/edit/" + (count)} id="edit" onClick={() => button2Click(updateButton)} >Edit</NavLink>
               ) : (
-                <NavLink to={"/note/" + (count + 1)} id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>
+                <NavLink to={"/note/" + (count)} id="save" onClick={() => button1Click(updateButton)} >Save</NavLink>
               )}
               </li>
               <li><NavLink id="delete" onClick = {() => deleteButton(count)}> Delete</NavLink></li>
